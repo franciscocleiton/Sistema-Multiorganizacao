@@ -5,6 +5,39 @@
 #include <locale.h> //Aceitar palavras no padrão português-brasileiro com acentos
 #include <string.h>
 //============================================================================================================================================================================
+//Estruturas de dados
+typedef struct{
+	char usuario[50];
+	char senha[50];
+}login; //  struct será usada para fazer login no sistema
+
+typedef struct{
+	char titulo[50];
+	char autor[50];
+	char editora[20];
+}cad_livro; // struct usada para cadastro de livros
+
+typedef struct{
+	int dia;
+	int mes;
+	int ano;
+}DATA; // Struct para datas
+
+typedef struct{
+	char nome[100];
+	char cpf[12];
+	char cargo[20];
+	DATA data;
+}cad_biblioteca; // Struct para cadastro de bibliocário/monitor
+
+typedef struct{
+	char titulo[50];
+	char autor[50];
+	char editora[20];
+	char nome[100];
+	char fone[15];
+}livros_emprestados; //Struct para monitorar livros emprestados
+//============================================================================================================================================================================
 
 int main(){
 //============================================================================================================================================================================

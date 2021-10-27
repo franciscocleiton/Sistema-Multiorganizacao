@@ -51,7 +51,8 @@ int main(){
 	int comparasen(char log[], char key[]);
 //============================================================================================================================================================================	
 //Login no sistema
-sen = fopen("arqsenha", "rb");
+sen = fopen("arqsenha", "rb"); //caso baixe o código sugiro que apague o arquivo "arqsenha" para que crie seu login
+//login padrão -> Usuário = Biblioteca; Senha = eeep12
 	if(sen == NULL){ //Testar se o usuário ja tem um login no sistema, 
 					 //de maneira básica vou usar arquivos, se o arquivo "sen" estiver na máquina, significa q ja existe um login.
 		sen = fopen("arqsenha", "w+b"); // caso seja NULL irá ser feito a crição de um login

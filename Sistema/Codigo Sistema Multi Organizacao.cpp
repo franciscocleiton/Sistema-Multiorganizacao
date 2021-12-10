@@ -49,6 +49,13 @@ int main(){
 
 	void cabecalho();
 	int comparasen(char log[], char key[]);
+	void cadlivros();
+	void printbook();
+	void cadbiblioteca();
+	void printbibliotecario();
+	void livroemprestados();
+	void outrasferramentas();
+	void buscalivro();
 //============================================================================================================================================================================	
 //Login no sistema
 sen = fopen("arqsenha", "rb"); //caso baixe o código sugiro que apague o arquivo "arqsenha" para que crie seu login
@@ -189,7 +196,47 @@ sen = fopen("arqsenha", "rb"); //caso baixe o código sugiro que apague o arquivo
         printf("\n[0]-Sair do Sistema Multi-Organização");
         printf("\nDigite sua opção: ");
 		scanf("%d", &opcao); system("cls");
-	
+		
+		switch(opcao){
+			case 0:
+				cabecalho();
+				printf("Sucesso ao sair. Obrigado pelo seu acesso!\n");	
+				break;
+				
+			case 1:
+				cadlivros();
+				break;
+			
+			case 2:
+				cadbiblioteca();
+				break;
+				
+			case 3:
+				printbibliotecario();
+				break;
+				
+			case 4:
+				printbook();
+				break;
+				
+			case 5:
+				livroemprestados();
+				break;
+				
+			case 6:
+				buscalivro();
+				break;	
+			
+			case 7:
+				outrasferramentas();
+				break;	
+				
+			default:
+				cabecalho();
+				printf("Opçao indisponível, tente novamente!\n");
+		        system("pause"); system("cls");
+				break;
+			}
 	}while(opcao != 0);
 	
 	system("pause");

@@ -208,27 +208,27 @@ sen = fopen("arqsenha", "rb"); //caso baixe o código sugiro que apague o arquivo
 				break;
 			
 			case 2:
-				cadbiblioteca();
+				//cadbiblioteca();
 				break;
 				
 			case 3:
-				printbibliotecario();
+				//printbibliotecario();
 				break;
 				
 			case 4:
-				printbook();
+				//printbook();
 				break;
 				
 			case 5:
-				livroemprestados();
+				//livroemprestados();
 				break;
 				
 			case 6:
-				buscalivro();
+				//buscalivro();
 				break;	
 			
 			case 7:
-				outrasferramentas();
+				//outrasferramentas();
 				break;	
 				
 			default:
@@ -290,4 +290,46 @@ int comparasen(char log[], char key[]){
 			}		
 		}
 }
+//==================================================================================================================================================
+/// Case 1 = Função para cadastro de livros
+
+void cadlivros(){
+	FILE *CADL;
+	cad_livro l1;
+	char getche, buffer;
+	
+	CADL = fopen("cadastro de livros", "ab");
+	
+	if(CADL == NULL){
+		printf("Erro no Sistema!\n\n");
+	}
+	
+	else{
+		
+		do{
+		cabecalho();
+		fflush(stdin);
+		printf("Digite o título do livro: ");
+		fgets(l1.titulo, 50, stdin);
+		l1.titulo[strcspn(l1.titulo, "\n")] = '\0';
+		
+		printf("Digite o nome do autor do livro: ");
+		fgets(l1.autor, 50, stdin);
+		l1.autor[strcspn(l1.autor, "\n")] = '\0';
+		
+		printf("Digite a editora do livro: ");
+		fgets(l1.editora, 20, stdin);
+		l1.editora[strcspn(l1.editora, "\n")] = '\0';
+		
+		fwrite(&l1, sizeof(cad_livro), 1, CADL);
+		
+		printf("Deseja cadastrar um novo Livro? (s/n)");
+		scanf("%c", &getche);
+		scanf("%c", &buffer);
+		
+		}while(getche == 's');
+		fclose(CADL);
+	}
+	
+} 
 

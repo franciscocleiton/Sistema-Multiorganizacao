@@ -208,11 +208,11 @@ sen = fopen("arqsenha", "rb"); //caso baixe o código sugiro que apague o arquivo
 				break;
 			
 			case 2:
-				//cadbiblioteca();
+				cadbiblioteca();
 				break;
 				
 			case 3:
-				//printbibliotecario();
+				printbibliotecario();
 				break;
 				
 			case 4:
@@ -332,4 +332,98 @@ void cadlivros(){
 	}
 	
 } 
+//==================================================================================================================================================
+// Case 2 = Cadastro de Bibliotecarios e Voluntarios
+
+void cadbiblioteca(){
+
+	FILE *CADB;
+	cad_biblioteca cad1;
+	char getche, buffer;
+	
+	CADB = fopen("cadastro de Bibliotecario", "ab");
+	
+	if(CADB == NULL){
+		printf("Erro no Sistema!\n\n");
+	}
+	
+	else{
+		
+		do{
+		cabecalho();
+		fflush(stdin);
+		printf("Digite o nome do Bibliotecário/Voluntário: ");
+		fgets(cad1.nome, 100, stdin);
+		cad1.nome[strcspn(cad1.nome, "\n")] = '\0';
+		
+		printf("Digite o CPF do Bibliotecário/Voluntário: ");
+		fgets(cad1.cpf, 12, stdin);
+		cad1.cpf[strcspn(cad1.cpf, "\n")] = '\0';
+		
+		printf("Digite a data de nascimento: (EX: 11 01 2002)");
+		scanf("%d %d %d", &cad1.data.dia, &cad1.data.mes, &cad1.data.ano);
+		
+		fflush(stdin);
+		printf("Digite o cargo(Bibliotecário/Voluntário): ");
+		fgets(cad1.cargo, 20, stdin);
+		cad1.cargo[strcspn(cad1.cargo, "\n")] = '\0';
+		
+		fwrite(&cad1, sizeof(cad_biblioteca), 1, CADB);
+		
+		printf("Deseja cadastrar outro Bibliotecário/Voluntário? (s/n)");
+		scanf("%c", &getche);
+		scanf("%c", &buffer);
+		
+		}while(getche == 's');
+		fclose(CADB);
+	}
+}
+
+//==================================================================================================================================================
+// Case 3 = Lista de Bibliotecarios e Voluntarios
+
+void printbibliotecario(){
+
+    FILE *prb;
+	cad_biblioteca cad1;
+	int EOF_ctrl, cont;
+	
+	prb = fopen("cadastro de Bibliotecario", "rb");
+	
+	if(prb==NULL){
+		cabecalho();
+		printf("Ainda não existem Bibliotecarios/Voluntários cadastrados!\n\n");
+		system("pause");
+	}
+	
+	else{
+		cont=0;
+		cabecalho();
+		printf("\nLISTA DE BIBLIOTECÁRIOS/VOLUNTÁRIOS:\n");
+		while(!feof(prb)){
+			EOF_ctrl = fread(&cad1, sizeof(cad_biblioteca), 1, prb);
+			if(ferror(prb)){
+				printf("\nErro no Sistema.\n");	
+			}
+			else{
+				if(EOF_ctrl != 0){
+					printf("---------------------------------------------\n");
+					printf("Nome: %s\n", cad1.nome);
+					printf("CPF: %s\n", cad1.cpf);
+					printf("Data de Nascimento: %d/%d/%d\n", cad1.data.dia, cad1.data.mes, cad1.data.ano);
+					printf("Cargo: %s\n", cad1.cargo);
+					printf("---------------------------------------------\n\n");
+					cont++;
+				}
+			}
+		}
+		
+		if(cont==0){
+				printf("Não existem Bibliotecarios/Voluntários cadastrados!\n\n");	
+		}
+		
+		system("pause");
+	}
+	fclose(prb);
+}
 
